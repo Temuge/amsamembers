@@ -1,0 +1,10 @@
+<p>hi.</p>
+
+
+<form action="{% url 'core:submitRegistration' %}" method="post">
+{% csrf_token %}
+<input type="text" name="firstName"/>
+<input type="text" name="lastName"/>
+<input type="text" name="emailAddress"/>
+<input type="submit" value="Submit" />
+</form>
