@@ -71,8 +71,6 @@ def submitRegistration(request):
 
 
 def confirmEmail(request, externalId, id):
-	print externalId
-	print id
 	member = Member.objects.get(id=id)
 	confirmed = (member.external_id == externalId)
 
