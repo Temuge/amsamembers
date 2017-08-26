@@ -1,10 +1,25 @@
-<p>hello world.</p>
+{% extends "base.html" %}
 
+{% block body %}
 
-<form action="{% url 'core:submitRegistration' %}" method="post">
-{% csrf_token %}
-<input type="text" name="firstName"/>
-<input type="text" name="lastName"/>
-<input type="text" name="emailAddress"/>
-<input type="submit" value="Submit" />
-</form>
+<div class="jumbotron jumbotron-fluid">
+<div class="container ">
+  <h1 class="display-3" id="hero-title">Where Friendship Begins</h1>
+  <p class="lead">"АМЕРИК ДАХЬ МОНГОЛ ОЮУТНЫ ХОЛБОО” төрийн бус байгууллагын зорилго нь дэлхий дахин дахь Монголын шилдэг оюутан, төгсөгчдийг хамарсан сүлжээ, тэдгээрийн мэдээллийн санг бий болгож, Монгол улс болон олон улсад боловсрол, эдийн засаг болон сайн санааны үйлс зохион байгуулж оролцоход оршино.
+  </p>
+  <form action="{% url 'core:registration' %}" method="get">
+  <hr class="my-4">
+  <p>Их сургуулийн и-мэйл хаяг</p>
+  <div class="row">
+    <div class="col-4 input-group">
+      <input type="text" class="form-control form-control-lg right-text" name="schoolEmailPrefix" placeholder="@mycollege" aria-describedby="basic-addon2">
+       <span class="input-group-addon" id="basic-addon2">.edu</span>
+    </div>
+    <div class="col-2">
+       <input class="btn btn-primary btn-lg" type="submit" value="эхэлцгээе">
+    </div>
+  </div>
+  </form>
+</div>
+</div>
+{% endblock %}
