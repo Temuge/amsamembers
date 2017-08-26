@@ -9,4 +9,4 @@ urlpatterns = [
     url(r'^submitRegistration/$', views.submitRegistration, name='submitRegistration'),
     url(r'^registration/$', views.registration, name='registration'),
     url(r'^confirmEmail/(?P<externalId>\w+)/(?P<id>\w+)/$', views.confirmEmail, name='confirmEmail'),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
