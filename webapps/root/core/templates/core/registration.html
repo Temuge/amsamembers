@@ -1,0 +1,136 @@
+{% extends "registrationBorder.html" %}
+
+{% block content %}
+
+<form action="{% url 'core:submitRegistration' %}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="schoolEmail" value="{{schoolEmail}}">
+  <div class="container">
+  	<div class="row">
+      <div class="col-12">
+        <div class="row top30"> <div class="col">Нэр </div></div>
+        <div class="row top5">
+          <div class="col-6">
+            <input type="text" class="form-control" name="firstName" placeholder="Өөрийн" required/>
+          </div>
+          <div class="col-6">
+            <input type="text" class="form-control" name="lastName" placeholder="Эцэг/эх нэр"/>
+          </div>
+        </div>
+        <div class="row top30"> <div class="col">Төрсөн өдөр </div></div>
+        <div class="row top5">
+            <div class="col-4">
+              <select class="form-control" name="birthDay">
+              <option value="" disabled selected> Өдөр</option>
+              {% for day in days %}
+                <option value="{{day}}">{{day}}</option>
+              {% endfor %}
+              </select>
+            </div>
+            <div class="col-4">
+              <select class="form-control" name="birthMonth">
+              <option value="" disabled selected>Сар</option>
+              {% for month in months %}
+                <option value="{{month}}">{{month}}</option>
+              {% endfor %}
+              </select>
+            </div>
+            <div class="col-4">
+              <select class="form-control" name="birthYear">
+              <option value="" disabled selected>Жил</option>
+              {% for year in possibleYearsToBorn %}
+                <option value="{{year}}">{{year}}</option>
+              {% endfor %}
+              </select>
+            </div>
+        </div>
+        <div class="row top30"> <div class="col">Хаяг</div></div>
+        <div class="row top5">
+          <div class="col-12">
+            <input type="text" class="form-control" name="address1" placeholder="Хаяг 1 (123 Main Street)"/>
+          </div>
+        </div>
+
+        <div class="row top10">
+          <div class="col-12">
+            <input type="text" class="form-control" name="address2" placeholder="Хаяг 2 (Apt # 123)"/>
+          </div>
+        </div>
+
+        <div class="row top10">
+          <div class="col-7">
+            <input type="text" class="form-control" name="city" placeholder="Хот"/>
+          </div>
+          <div class="col-3">
+            {% include "core/stateSelectionDropdown.html" %}
+          </div>
+          <div class="col-2">
+            <input type="text" class="form-control" name="zip" placeholder="Zip Код"/>
+          </div>
+        </div>
+
+        <div class="row top30"> <div class="col">Холбоо барих</div></div>
+        <div class="row top10">
+          <div class="col-6">
+            <input type="text" class="form-control" name="phoneNumber" placeholder="Утасны дугаар"/>
+          </div>
+          <div class="col-6">
+            <input type="text" class="form-control" name="personalEmail" placeholder="Хувийн и-мэйл хаяг">
+          </div>
+        </div>
+
+        <div class="row top30"> <div class="col">Сургуулийн тухай</div></div>
+        <div class="row top15">
+          <div class="col-8">
+            <input type="text" class="form-control" name="schoolName" 
+            placeholder="{%if not university%}Одоогийн хамрагдаж буй их сургууль (бүтнээр){%endif%}" {%if university%}value="{{university.school_name}}"{%endif%}  {%if university%}disabled{%endif%}/>
+          </div>
+          <div class="col-4">
+              <select class="form-control" name="graduationYear">
+              <option value="" disabled selected>Төгсөх Жил</option>
+              {% for year in possibleYearsToGraduate %}
+                <option value="{{year}}">{{year}}</option>
+              {% endfor %}
+              </select>
+          </div>
+        </div>
+
+        <div class="row top15">
+          <div class="col-8">
+            <input type="text" class="form-control" name="major" placeholder="Суралцаж буй мэргэжил"/>
+          </div>
+          <div class="col-4">
+              <select class="form-control" name="degreeLevel">
+              <option value="" disabled selected>Горилж буй эрдмийн цол</option>
+              {% for degreeLevel in degreeLevels %}
+                <option value="{{degreeLevel.0}}">{{degreeLevel.1}}</option>
+              {% endfor %}
+              </select>
+            </div>
+        </div>
+
+        <div class="row top15">
+          <div class="col-12">
+            <input type="text" class="form-control" name="secondMajor" placeholder="Давхар суралцаж буй мэргэжил (хэрвээ байгаа бол)"/>
+          </div>
+        </div>
+
+        <div class="row top30"> <div class="col">Олон нийтийн сүлжээ</div></div>
+        <div class="row top10">
+          <div class="col-6">
+            <input type="text" class="form-control" name="facebookLink" placeholder="Facebook link"/>
+          </div>
+          <div class="col-6">
+            <input type="text" class="form-control" name="linkedInLink" placeholder="LinkedIn link"/>
+          </div>
+        </div>
+        <div class="row top30"> 
+          <div class="col"><input class="btn btn-primary btn-lg" type="submit" value="Бүртгүүлэх" /></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</form>
+
+{% endblock %}

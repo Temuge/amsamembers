@@ -1,0 +1,11 @@
+
+
+{% extends "base.html" %}
+
+{% block body %}
+{%if isAccepted%}
+Congratulations! You are accepted!
+{%else%}
+Thank you! Your email is confirmed, we will let you know once we have the result!
+{%endif%}
+{% endblock %}
