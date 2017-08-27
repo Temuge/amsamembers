@@ -15,9 +15,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CORE_DIR = os.path.join(BASE_DIR, 'core/')
-TEMPLATES_DIR = os.path.join(CORE_DIR, 'templates/')
+TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates/')
 TEMPLATES_CORE_DIR = os.path.join(TEMPLATES_DIR, 'core')
-print TEMPLATES_CORE_DIR
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -26,9 +25,15 @@ print TEMPLATES_CORE_DIR
 SECRET_KEY = 'q)akzl21v)q2=9!n9yb%7ga17+_i7!ouwwn1j&c5%@ys#tt5b7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+if os.environ.get('DJANGO_DEBUG'):
+    print("Debug is enabled.")
+    DEBUG = True
+    ALLOWED_HOSTS = ["127.0.0.1", 'localhost']
+else:
+    DEBUG = False
+    ALLOWED_HOSTS = ["*"]
 
-ALLOWED_HOSTS = ['52.37.143.127', 'localhost', '127.0.0.1']
+#ALLOWED_HOSTS = ['52.37.143.127', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -58,7 +63,7 @@ ROOT_URLCONF = 'amsamembership.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_CORE_DIR],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
