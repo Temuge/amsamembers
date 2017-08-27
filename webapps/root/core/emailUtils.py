@@ -12,7 +12,7 @@ def send_email_confirmation_mail(firstName, schoolEmailAddress, url):
 	fromEmail = "AMSA <mailgun@{0}>".format(domain)
 	subject = "Amsa Registration Email Confirmation"
 	context = {'firstName': firstName, 'url': url}
-	html = render_to_string('confirmEmailMailTemplate.html', context)
+	html = render_to_string('core/confirmEmailMailTemplate.html', context)
 	send_mailgun_email(domain, fromEmail, [to], subject, html)
 
 def send_mailgun_email(domain, fromEmail, tos, subject, html):
