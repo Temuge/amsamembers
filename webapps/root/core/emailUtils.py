@@ -10,7 +10,7 @@ def send_email_confirmation_mail(firstName, schoolEmailAddress, url):
         to = WHITELISTED_EMAIL_MAP[schoolEmailAddress] if schoolEmailAddress in WHITELISTED_EMAIL_MAP else schoolEmailAddress
 	domain = MAILGUN_DOMAIN_TEST
 	fromEmail = "AMSA <mailgun@{0}>".format(domain)
-	subject = "Amsa Registration Email Confirmation"
+	subject = "Confirm your email address"
 	context = {'firstName': firstName, 'url': url}
 	html = render_to_string('core/confirmEmailMailTemplate.html', context)
 	send_mailgun_email(domain, fromEmail, [to], subject, html)

@@ -24,7 +24,6 @@ def registration(request):
 @transaction.atomic
 def submitRegistration(request):
 	firstName = request.POST['firstName']
-	context={'firstName' : firstName}
 	externalId = uuid.uuid4().hex
 	schoolEmail = request.POST['schoolEmail']
 	schoolDomainName = retrieveDomain(schoolEmail)
@@ -67,6 +66,8 @@ def submitRegistration(request):
 		firstName,
 		schoolEmail,
 		redirect_url)
+
+	context={'firstName' : firstName, 'schoolEmail': schoolEmail}
 	return render(request, 'core/submitRegistration.html', context)
 
 

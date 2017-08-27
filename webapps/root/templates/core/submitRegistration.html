@@ -1,1 +1,6 @@
-<h1> Welcome, {{firstName}}!</h1>
+{% extends "core/registrationBorder.html" %}
+
+{% block content %}
+Check your email!
+We've emailed a special link to {{schoolEmail}}. Click the link to confirm your address and get started.
+{% endblock %}
