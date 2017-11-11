@@ -6,6 +6,7 @@ from django.db import models
 class University(models.Model):
 	school_name = models.CharField(max_length=100)
 	school_domain_name = models.CharField(max_length=100, unique=True)
+	approved = models.BooleanField(default=False)
 
 # Create your models here.
 class Member(models.Model):

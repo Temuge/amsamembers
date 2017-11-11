@@ -32,6 +32,11 @@ def submitRegistration(request):
 		schoolName = university.school_name
 	else:
 		schoolName = request.POST['schoolName']
+		university = University(
+			school_name = schoolName,
+			school_domain_name = schoolDomainName)
+		university.save()
+		## TODO: send out an emailt to approve university
 	newApplicant = Member(first_name = request.POST['firstName'],	
 						  last_name = request.POST['lastName'],
 						  date_of_birth = datetime.date(
@@ -77,11 +82,17 @@ def confirmEmail(request, externalId, id):
 
 	if (confirmed and member != None):
 		uniMember = MemberUniversity.objects.get(member=member)
-		member.acceptance_status = Member.ACCEPTED if uniMember.university_assigned != None else Member.HOLDING
+		member.acceptance_status = Member.ACCEPTED if uniMember.university_assigned.approved else Member.HOLDING
 		member.save()
-	isAccepted = (member.acceptance_status==Member.ACCEPTED)
-	return render(request, 'core/emailConfirmed.html', {'isAccepted':isAccepted})
-
+		isAccepted = (member.acceptance_status==Member.ACCEPTED)
+		if isAccepted:
+			send_acceptance_mail(member.first_name, uniMember.school_email_address)
+		else:
+			send_pending_mail(member.first_name, uniMember.school_email_address)
+		return render(request, 'core/emailConfirmed.html', {'isAccepted':isAccepted})
+	else:
+		#handle error
+		return render(request, 'core/emailConfirmed.html', {'isAccepted':false})
 # Helper
 def loadOrCreateUniversity(domainName, schoolName):
 	existing = loadUniversityIfExists(domainName)
