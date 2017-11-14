@@ -1,10 +1,16 @@
 {% extends "core/base.html" %}
 
 {% block body %}
+<div class="jumbotron jumbotron-fluid" id="registration-header">
+  <div class="container">
+  		<h1 class="display-3">Amsa Registration</h1>
+    	<p class="lead">Бүртгүүлэхийн тулд энэ маягтыг бөглөнө үү.</p>
+  </div>
+</div>
 <div class="background-registration">
 <div class="border-1 registrationBorder">
 {% block content %}{% endblock %}
 </div>
 </div>
-
+{% include "core/_footer.html" %} 
 {% endblock %}
