@@ -20,8 +20,10 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 import settings
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
+    url(r'^$',  RedirectView.as_view(url='register/', permanent=False), name='index'),
 	url(r'^register/', include('core.urls', namespace="core")),
     url(r'^admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
