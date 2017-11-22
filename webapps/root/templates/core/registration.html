@@ -1,7 +1,8 @@
 {% extends "core/registrationBorder.html" %}
 
 {% block content %}
-
+<h2 >Amsa Application Form</h1>
+<p class="lead">Бүртгүүлэхийн тулд энэ маягтыг бөглөнө үү.</p>
 <form action="{% url 'core:submitRegistration' %}" method="post">
   {% csrf_token %}
   <input type="hidden" name="schoolEmail" value="{{schoolEmail}}">
@@ -53,7 +54,7 @@
 
         <div class="row top10">
           <div class="col-12">
-            <input type="text" class="form-control" name="address2" placeholder="Хаяг 2 (Apt # 123)" required/>
+            <input type="text" class="form-control" name="address2" placeholder="Хаяг 2 (Apt # 123)" />
           </div>
         </div>
 
@@ -121,7 +122,7 @@
             <input type="text" class="form-control" name="facebookLink" placeholder="Facebook link" required/>
           </div>
           <div class="col-6">
-            <input type="text" class="form-control" name="linkedInLink" placeholder="LinkedIn link" required/>
+            <input type="text" class="form-control" name="linkedInLink" placeholder="LinkedIn link" />
           </div>
         </div>
         <div class="row top30"> 

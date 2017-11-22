@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
 import requests
 from django.template.loader import render_to_string
 from django.core.urlresolvers import reverse
@@ -20,7 +22,7 @@ def send_acceptance_mail(firstName, schoolEmailAddress):
         to = checkWhiteListedMail(schoolEmailAddress)
         domain = MAILGUN_DOMAIN_TEST
         fromEmail = "AMSA <registration@{0}>".format(domain)
-        subject = "Congratulations!"
+        subject = "Welcome to AMSA"
         context = {'firstName': firstName}
         html = render_to_string('core/acceptanceLetter.html', context)
         send_mailgun_email(domain, fromEmail, [to], subject, html)
@@ -29,7 +31,7 @@ def send_rejection_mail(firstName, schoolEmailAddress):
         to = checkWhiteListedMail(schoolEmailAddress)
         domain = MAILGUN_DOMAIN_TEST
         fromEmail = "AMSA <registration@{0}>".format(domain)
-        subject = "Amsa membership status"
+        subject = "АМОХ-ны гишүүнчлэлийн өргөдөл"
         context = {'firstName': firstName}
         html = render_to_string('core/rejectionLetter.html', context)
         send_mailgun_email(domain, fromEmail, [to], subject, html)
@@ -38,7 +40,7 @@ def send_pending_mail(firstName, schoolEmailAddress):
         to = checkWhiteListedMail(schoolEmailAddress)
         domain = MAILGUN_DOMAIN_TEST
         fromEmail = "AMSA <registration@{0}>".format(domain)
-        subject = "Amsa membership registration"
+        subject = "АМОХ-ны гишүүнчлэлийн өргөдөл"
         context = {'firstName': firstName}
         html = render_to_string('core/pendingLetter.html', context)
         send_mailgun_email(domain, fromEmail, [to], subject, html)

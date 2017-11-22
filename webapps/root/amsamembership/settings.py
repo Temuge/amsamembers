@@ -133,10 +133,12 @@ USE_TZ = True
 #STATIC_URL = '/static/'
 #STATIC_ROOT = '/var/www/static'
 
-STATIC_ROOT = '/var/www/static/'
-STATIC_URL = '/static/'
-if DEBUG:
 
+STATIC_URL = '/static/'
+STATIC_ROOT = '/var/www/static/'
+if DEBUG:
     STATICFILES_DIRS = [
-        os.path.join(BASE_DIR, "static")
+        os.path.join(BASE_DIR, "core/static")
     ]
+else:
+    STATIC_ROOT = '/var/www/static/'
